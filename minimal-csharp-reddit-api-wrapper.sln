@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "minimal-csharp-reddit-api-wrapper", "minimal-csharp-reddit-api-wrapper\minimal-csharp-reddit-api-wrapper.csproj", "{F46900E9-7C2B-42B6-853F-428CF17700BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F46900E9-7C2B-42B6-853F-428CF17700BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F46900E9-7C2B-42B6-853F-428CF17700BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F46900E9-7C2B-42B6-853F-428CF17700BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F46900E9-7C2B-42B6-853F-428CF17700BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2BB2A571-7DC4-45AF-9CAA-F8995FBA404E}
+	EndGlobalSection
+EndGlobal
