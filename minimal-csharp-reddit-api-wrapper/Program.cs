@@ -25,10 +25,7 @@ namespace MinimalRedditWrapper
             var responseString = await response.Content.ReadAsStringAsync();
             var listing = JsonConvert.DeserializeObject<Listing<Thing<PostData>>>(responseString);
             //Console.WriteLine(responseString);
-            foreach (var child in listing.data.children)
-            {
-                Console.WriteLine(child.data.thumbnail);
-            }
+            Console.WriteLine(listing.After);
         }
     }
 }

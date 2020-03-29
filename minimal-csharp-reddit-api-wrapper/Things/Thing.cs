@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.Text;
 
 namespace MinimalRedditWrapper.Things
 {
     class Thing<T>
     {
-        public T data;
+        [JsonProperty("data")]
+        public T Data;
     }
 }

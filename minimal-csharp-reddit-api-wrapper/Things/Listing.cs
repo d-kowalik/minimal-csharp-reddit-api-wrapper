@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace MinimalRedditWrapper.Things
 {
     class Listing<T>
     {
-        public string kind;
-        string before;
-        string after;
-        public ListingData<T> data;
+        [JsonProperty("kind")]
+        public string Kind;
+        [JsonProperty("before")]
+        string Before;
+        [JsonProperty("after")]
+        public string After;
+        [JsonProperty("data")]
+        public ListingData<T> Data;
     }
 }
