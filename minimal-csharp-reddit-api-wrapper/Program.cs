@@ -12,7 +12,7 @@ namespace MinimalRedditWrapper
 {
     internal class Program
     {
-        static async Task Main(string[] args)
+        private static async Task Main(string[] args)
         {
             var token = await Token.Create("g1b0mLRvuF7Sfg");
 
@@ -22,9 +22,14 @@ namespace MinimalRedditWrapper
 
             var response = await client.GetAsync("https://oauth.reddit.com/r/wallpapers/random");
             var responseString = await response.Content.ReadAsStringAsync();
+            object responseObject = JsonConvert.DeserializeObject(responseString);
+            Console.WriteLine(responseObject);
             var listing = JsonConvert.DeserializeObject<Listing<Thing<PostData>>>(responseString);
-            Console.WriteLine(responseString);
-            Console.WriteLine(listing.After);
+            foreach (var child in listing.Data.Children)
+            {
+                Console.WriteLine(child.Data.Title);
+                Console.WriteLine(child.Data.Url);
+            }
         }
     }
 }
