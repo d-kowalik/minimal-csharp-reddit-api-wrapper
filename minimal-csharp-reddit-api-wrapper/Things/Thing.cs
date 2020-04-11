@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MinimalRedditWrapper.Things
 {
-    class Thing<T>
+    public class Thing<T>
     {
         [JsonProperty("data")]
         public T Data;

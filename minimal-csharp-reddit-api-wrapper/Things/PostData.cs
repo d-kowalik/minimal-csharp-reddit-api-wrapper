@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace MinimalRedditWrapper.Things
 {
-    class PostData
+    public class PostData
     {
         [JsonProperty("thumbnail")]
         public string Thumbnail;

@@ -10,21 +10,20 @@ using MinimalRedditWrapper.Things;
 
 namespace MinimalRedditWrapper
 {
-    class Program
+    internal class Program
     {
-
         static async Task Main(string[] args)
         {
             var token = await Token.Create("g1b0mLRvuF7Sfg");
 
-            HttpClient client = new HttpClient();
+            var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Authorization", "bearer " + token.Value);
             client.DefaultRequestHeaders.Add("User-Agent", "reddit-api-tests by st_aeon");
 
             var response = await client.GetAsync("https://oauth.reddit.com/r/wallpapers/random");
             var responseString = await response.Content.ReadAsStringAsync();
             var listing = JsonConvert.DeserializeObject<Listing<Thing<PostData>>>(responseString);
-            //Console.WriteLine(responseString);
+            Console.WriteLine(responseString);
             Console.WriteLine(listing.After);
         }
     }

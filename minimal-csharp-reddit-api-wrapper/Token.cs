@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace MinimalRedditWrapper
 {
-    class Token
+    public class Token
     {
         [JsonProperty("access_token")]
         public string Value;
@@ -18,17 +18,14 @@ namespace MinimalRedditWrapper
         [JsonProperty("expires_in")]
         public string ValidFor
         {
-            set
-            {
-                ExpirationDate = DateTime.Now.AddSeconds(int.Parse(value));
-            }
+            set => ExpirationDate = DateTime.Now.AddSeconds(int.Parse(value));
         }
 
-        public DateTime ExpirationDate;
+        public DateTime ExpirationDate { get; private set; }
 
         public static async Task<Token> Create(string appId)
         {
-            HttpClient client = new HttpClient();
+            var client = new HttpClient();
 
             var values = new Dictionary<string, string>
             {
@@ -37,7 +34,8 @@ namespace MinimalRedditWrapper
             };
 
             var byteArray = Encoding.ASCII.GetBytes(appId + ":");
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
+            client.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
             var content = new FormUrlEncodedContent(values);
             Console.WriteLine("Awaiting response...");
 
