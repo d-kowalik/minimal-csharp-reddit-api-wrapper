@@ -9,5 +9,11 @@ namespace MinimalRedditWrapper.Things
     {
         [JsonProperty("children")]
         public List<T> Children;
+
+        [JsonProperty("before")]
+        public string Before;
+
+        [JsonProperty("after")]
+        public string After;
     }
 }

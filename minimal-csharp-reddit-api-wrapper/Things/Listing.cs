@@ -9,10 +9,7 @@ namespace MinimalRedditWrapper.Things
     {
         [JsonProperty("kind")]
         public string Kind;
-        [JsonProperty("before")]
-        string Before;
-        [JsonProperty("after")]
-        public string After;
+
         [JsonProperty("data")]
         public ListingData<T> Data;
     }

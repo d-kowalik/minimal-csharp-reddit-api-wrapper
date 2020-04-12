@@ -20,12 +20,21 @@ namespace MinimalRedditWrapper
             client.DefaultRequestHeaders.Add("Authorization", "bearer " + token.Value);
             client.DefaultRequestHeaders.Add("User-Agent", "reddit-api-tests by st_aeon");
 
-            var response = await client.GetAsync("https://oauth.reddit.com/r/wallpapers/random");
+            var response = await client.GetAsync("https://oauth.reddit.com/r/wallpapers/.json");
             var responseString = await response.Content.ReadAsStringAsync();
-            object responseObject = JsonConvert.DeserializeObject(responseString);
+            var responseObject = JsonConvert.DeserializeObject(responseString);
             Console.WriteLine(responseObject);
             var listing = JsonConvert.DeserializeObject<Listing<Thing<PostData>>>(responseString);
-            foreach (var child in listing.Data.Children)
+
+            Console.WriteLine("AFTER: {0}", listing.Data.After);
+            var afterResponse = await client.GetAsync("https://oauth.reddit.com/r/wallpapers?after="+listing.Data.After);
+            var afterResponseString = await afterResponse.Content.ReadAsStringAsync();
+            var afterResponseObject = JsonConvert.DeserializeObject(afterResponseString);
+            // Console.WriteLine(afterResponseObject);
+            var afterListing = JsonConvert.DeserializeObject<Listing<Thing<PostData>>>(afterResponseString);
+
+
+            foreach (var child in afterListing.Data.Children)
             {
                 Console.WriteLine(child.Data.Title);
                 Console.WriteLine(child.Data.Url);
