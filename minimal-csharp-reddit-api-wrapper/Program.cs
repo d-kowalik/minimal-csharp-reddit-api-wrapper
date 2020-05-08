@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Numerics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using MinimalRedditWrapper.Things;
@@ -18,12 +19,11 @@ namespace MinimalRedditWrapper
             var reddit = await Reddit.Create(APP_ID);
             var listing = await reddit.GetSubreddit("wallpapers");
 
+            var listing2 = await listing.Next();
 
-            foreach (var child in listing.Data.Children)
-            {
-                Console.WriteLine(child.Data.Title);
-                Console.WriteLine(child.Data.Url);
-            }
+            var listing3 = await listing2.Previous();
+
+            Console.WriteLine(listing.Data.Children[0].Data.Thumbnail == listing3.Data.Children[0].Data.Thumbnail);
         }
     }
 }

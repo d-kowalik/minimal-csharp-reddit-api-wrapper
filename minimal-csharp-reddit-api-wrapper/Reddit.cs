@@ -27,13 +27,25 @@ namespace MinimalRedditWrapper.Things
             return res;
         }
 
-        public async Task<Listing<Post>> GetSubreddit(string name)
+        public async Task<Listing<Post>> GetSubreddit(string name, Dictionary<string, string> args = null)
         {
-            var url = SubredditRequestUrl + name;
-            var response = await _client.GetAsync(url);
+            var baseUrl = SubredditRequestUrl + name;
+            var finalUrl = baseUrl;
+            if (args != null)
+            {
+                finalUrl += "?";
+                foreach (var (key, value) in args)
+                {
+                    finalUrl += key + "=" + value + "&";
+                }
+            }
+
+            var response = await _client.GetAsync(finalUrl);
             var responseString = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(responseString);
             var obj = JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(responseString);
-            return new Listing<Post>(this, url, obj);
+            return new Listing<Post>(this, name, baseUrl, obj);
         }
     }
 }
+
