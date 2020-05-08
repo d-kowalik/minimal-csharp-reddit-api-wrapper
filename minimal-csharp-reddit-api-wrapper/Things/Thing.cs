@@ -5,9 +5,18 @@ using System.Text;
 
 namespace MinimalRedditWrapper.Things
 {
-    public class Thing<T>
+    public class Thing
     {
+        [JsonProperty("id")]
+        public string Id;
+
+        [JsonProperty("name")]
+        public string Name;
+        
+        [JsonProperty("kind")]
+        public string Kind;
+
         [JsonProperty("data")]
-        public T Data;
+        public Newtonsoft.Json.Linq.JObject Data;
     }
 }

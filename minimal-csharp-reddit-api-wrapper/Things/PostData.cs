@@ -7,7 +7,7 @@ namespace MinimalRedditWrapper.Things
 {
     public class PostData
     {
-        [JsonProperty("thumbnail")] 
+        [JsonProperty("thumbnail")]
         public string Thumbnail;
 
         [JsonProperty("title")]
@@ -16,7 +16,7 @@ namespace MinimalRedditWrapper.Things
         [JsonProperty("url")]
         public string Url;
 
-        [JsonProperty("preview")] 
+        [JsonProperty("preview")]
         public object Preview;
     }
 }

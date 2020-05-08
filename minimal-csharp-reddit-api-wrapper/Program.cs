@@ -24,14 +24,14 @@ namespace MinimalRedditWrapper
             var responseString = await response.Content.ReadAsStringAsync();
             var responseObject = JsonConvert.DeserializeObject(responseString);
             Console.WriteLine(responseObject);
-            var listing = JsonConvert.DeserializeObject<Listing<Thing<PostData>>>(responseString);
+            var listing = JsonConvert.DeserializeObject<Listing<Post>>(responseString);
 
             Console.WriteLine("AFTER: {0}", listing.Data.After);
             var afterResponse = await client.GetAsync("https://oauth.reddit.com/r/wallpapers?after="+listing.Data.After);
             var afterResponseString = await afterResponse.Content.ReadAsStringAsync();
             var afterResponseObject = JsonConvert.DeserializeObject(afterResponseString);
             // Console.WriteLine(afterResponseObject);
-            var afterListing = JsonConvert.DeserializeObject<Listing<Thing<PostData>>>(afterResponseString);
+            var afterListing = JsonConvert.DeserializeObject<Listing<Post>>(afterResponseString);
 
 
             foreach (var child in afterListing.Data.Children)

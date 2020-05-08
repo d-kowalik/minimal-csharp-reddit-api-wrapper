@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace MinimalRedditWrapper.Things
 {
-    public class Listing<T>
+    public class Listing<T> where T : Thing
     {
         [JsonProperty("kind")]
         public string Kind;
