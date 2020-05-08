@@ -29,9 +29,11 @@ namespace MinimalRedditWrapper.Things
 
         public async Task<Listing<Post>> GetSubreddit(string name)
         {
-            var response = await _client.GetAsync(SubredditRequestUrl + "wallpapers");
+            var url = SubredditRequestUrl + name;
+            var response = await _client.GetAsync(url);
             var responseString = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<Listing<Post>>(responseString);
+            var obj = JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(responseString);
+            return new Listing<Post>(this, url, obj);
         }
     }
 }
