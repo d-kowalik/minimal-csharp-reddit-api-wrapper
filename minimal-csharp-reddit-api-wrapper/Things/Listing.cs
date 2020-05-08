@@ -10,10 +10,8 @@ namespace MinimalRedditWrapper.Things
         public readonly string Url;
         private Reddit _reddit;
 
-        [JsonProperty("kind")]
         public string Kind;
 
-        [JsonProperty("data")]
         public ListingData<T> Data;
 
         public Listing(Reddit reddit, string url, Newtonsoft.Json.Linq.JObject obj)
