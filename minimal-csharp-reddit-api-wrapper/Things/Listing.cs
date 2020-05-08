@@ -26,11 +26,14 @@ namespace MinimalRedditWrapper.Things
             Data = obj["data"]?.ToObject<ListingData<T>>();
         }
 
+
+        // FOR NOW ALWAYS RETURNS A SUBREDDIT, TODO: Change that to more generic type!
         public async Task<Listing<Post>> Next()
         {
             return await _reddit.GetSubreddit(Name, new Dictionary<string, string> {{"after", Data.After}});
         }
 
+        // FOR NOW ALWAYS RETURNS A SUBREDDIT, TODO: Change that to more generic type!
         public async Task<Listing<Post>> Previous()
         {
             return await _reddit.GetSubreddit(Name, new Dictionary<string, string> { { "before", Data.Before} });
