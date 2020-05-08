@@ -42,7 +42,6 @@ namespace MinimalRedditWrapper.Things
 
             var response = await _client.GetAsync(finalUrl);
             var responseString = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responseString);
             var obj = JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(responseString);
             return new Listing<Post>(this, name, baseUrl, obj);
         }
